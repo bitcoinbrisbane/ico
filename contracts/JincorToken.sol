@@ -1,7 +1,7 @@
 pragma solidity ^0.4.11;
 
 import "./Burnable.sol";
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./Ownable.sol";
 
 /**
  * @title JincorToken
@@ -11,9 +11,11 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 contract JincorToken is Burnable, Ownable {
 
   string public name = "Jincor Token";
-  string public symbol = "JCR";
+  string public symbol = "SIO";
   uint256 public decimals = 18;
-  uint256 public INITIAL_SUPPLY = 35000000 * 1 ether;
+
+  //Token price, ETH: 0,002
+  uint256 public INITIAL_SUPPLY = 200000000 * 1 ether;
 
   /* The finalizer contract that allows unlift the transfer limits on this token */
   address public releaseAgent;

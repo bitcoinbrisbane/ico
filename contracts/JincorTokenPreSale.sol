@@ -1,11 +1,9 @@
 pragma solidity ^0.4.11;
 
-
 import "./Haltable.sol";
-import "zeppelin-solidity/contracts/math/SafeMath.sol";
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./SafeMath.sol";
+//import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./JincorToken.sol";
-
 
 contract JincorTokenPreSale is Ownable, Haltable {
   using SafeMath for uint;
@@ -13,41 +11,25 @@ contract JincorTokenPreSale is Ownable, Haltable {
   string public name = "Jincor Token PreSale";
 
   JincorToken public token;
-
   address public beneficiary;
-
-  uint public hardCap;
-
-  uint public softCap;
-
+  uint public softCap = 500;
   uint public price;
-
   uint public purchaseLimit;
-
   uint public collected = 0;
-
   uint public tokensSold = 0;
-
   uint public investorCount = 0;
-
   uint public weiRefunded = 0;
-
   uint public startBlock;
-
   uint public endBlock;
 
   bool public softCapReached = false;
-
   bool public crowdsaleFinished = false;
 
   mapping (address => bool) refunded;
 
   event GoalReached(uint amountRaised);
-
   event SoftCapReached(uint softCap);
-
   event NewContribution(address indexed holder, uint256 tokenAmount, uint256 etherAmount);
-
   event Refunded(address indexed holder, uint256 amount);
 
   modifier preSaleActive() {
@@ -61,14 +43,11 @@ contract JincorTokenPreSale is Ownable, Haltable {
   }
 
   function JincorTokenPreSale(
-  uint _hardCapUSD,
-  uint _softCapUSD,
   address _token,
   address _beneficiary,
   uint _totalTokens,
   uint _priceETH,
   uint _purchaseLimitUSD,
-
   uint _startBlock,
   uint _endBlock
   ) {
