@@ -1,0 +1,10 @@
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/bin/Debug/netcoreapp2.0/console.deps.json
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/bin/Debug/netcoreapp2.0/console.runtimeconfig.json
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/bin/Debug/netcoreapp2.0/console.runtimeconfig.dev.json
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/bin/Debug/netcoreapp2.0/console.dll
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/bin/Debug/netcoreapp2.0/console.pdb
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/obj/Debug/netcoreapp2.0/console.csproj.CoreCompileInputs.cache
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/obj/Debug/netcoreapp2.0/console.AssemblyInfoInputs.cache
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/obj/Debug/netcoreapp2.0/console.AssemblyInfo.cs
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/obj/Debug/netcoreapp2.0/console.dll
+/home/lucascullen/Projects/skrilla-smart-contract/src/console/obj/Debug/netcoreapp2.0/console.pdb

@@ -41,18 +41,31 @@ contract ERC20 {
 contract JincorToken {
     //using SafeMath for uint256;
 
+    uint256 private constant TOTAL_SUPPLY = 2000000 * 1 ether;
+    uint256 private constant SOFT_CAP = 500 * 1 ether;
+
+    uint256 private saleStart;
+    uint256 private saleEnd;
+
     string public name = "Jincor Token";
     string public symbol = "SIO";
     uint256 public decimals = 18;
-
-    uint256 private constant TOTAL_SUPPLY = 2000000 * 1 ether;
 
     mapping(address => uint256) public balances;
 
     address owner;
 
-    function JincorToken() {
+    function JincorToken (uint256 _saleStart) {
         owner = msg.sender;
+
+        if (_saleStart == 0) {
+            saleStart = 1508025600; //Beginning: 10.15.2017
+            saleEnd = 1509408000; //End: 10.31.2017
+        } else {
+            saleStart = _saleStart;
+            saleEnd = _saleStart + 17 days;
+        }
+
         balances[owner] = 2000000 * 1 ether;
     }
 
@@ -69,21 +82,6 @@ contract JincorToken {
     function balanceOf(address _owner) constant returns (uint256 balance) {
         return balances[_owner];
     }
-
-    event Transfer(address indexed _from, address indexed _to, uint _value);
-    event Approval(address indexed _owner, address indexed _spender, uint _value);
-}
-
-contract JincorICO {
-
-    JincorToken token;
-    address owner;
-
-    uint256 private constant TOTAL_SUPPLY = 2000000 * 1 ether;
-    uint256 private constant SOFT_CAP = 500 * 1 ether;
-
-    uint256 private saleStart;
-    uint256 private saleEnd;
 
     function getSaleStart() constant returns (uint256 total) {
         return saleStart;
@@ -106,20 +104,6 @@ contract JincorICO {
         this.balance > SOFT_CAP;
     }
 
-    function ICO (uint256 _saleStart, address tokenAddress) {
-        owner = msg.sender;
-
-        if (_saleStart == 0) {
-            saleStart = 1508025600; //Beginning: 10.15.2017
-            saleEnd = 1509408000; //End: 10.31.2017
-        } else {
-            saleStart = _saleStart;
-            saleEnd = _saleStart + 17 days;
-        }
-
-        token = JincorToken(tokenAddress);
-    }
-
     function() payable {
         buyTokens();
     }
@@ -133,7 +117,7 @@ contract JincorICO {
         uint price = getCurrentPrice();
         uint tokenAmount = price * amountInWei / 1 ether;
         
-        token.transfer(msg.sender, tokenAmount);        
+        transfer(msg.sender, tokenAmount);        
 
         //Raise event
         TokenPurchase(msg.sender, amountInWei, 0);
@@ -152,6 +136,8 @@ contract JincorICO {
         }
     }
 
+    event Transfer(address indexed _from, address indexed _to, uint _value);
+    event Approval(address indexed _owner, address indexed _spender, uint _value);
     event TokenPurchase(address indexed _purchaser, uint256 _value, uint256 _amount);
     event Refund();
 }
