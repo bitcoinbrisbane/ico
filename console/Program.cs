@@ -13,7 +13,7 @@ namespace console
     class Program : Helper
     {
         //0x221bbb8b9b508c2841a60f862e9d03c1997097f99ee83db94e077ff180265247
-        static String puntaa = "0xe2356d29d5dfecb4ee43c031204aeded24749959";
+        static String owner = "0xe2356d29d5dfecb4ee43c031204aeded24749959";
 
         //0x9790dbc40d24723c34cf942f4dafac69ceb9e52bb9c92135221596ac25ba4270
         static String alice = "0xa5f8ff129c19dbc0849619916c16010738ab5b1f";
@@ -23,13 +23,6 @@ namespace console
 
         //0xb5b03722b215f55bd753814b6bce7b7ff98704b312a49b95fafa5ccfbee08ab9
         static String team = "0xe7b2bdd46ee2a540436773e5127c77b160a9af0c";
-
-        //0xfd74b2d5b56010a52fa6f84fe7ed7f7b72b22cc5cd978172d83f6c27144996ae
-        static String growth = "0xbcd5e9679b654db151c62b1f5669231f2aa8dcb9";
-
-        static String ETH = "100000000000000000";
-        static String HALF_ETH = "50000000000000000";
-        static String TWO_ETH = "200000000000000000";
 
         static Int64 OCTOBER_6_2017 = 1507323600;
         static Int64 OCTOBER_9_2017 = 1507582800;
@@ -53,8 +46,6 @@ namespace console
 
         static void Main(string[] args)
         {
-            //contractPath = "../../bin/src/contracts/";
-            //contractPath = "/Users/lucascullen/Projects/Puntta/skrilla-smart-contract/bin/src/contracts/";
             contractPath = "/home/lucascullen/Projects/skrilla-smart-contract/bin/src/contracts/";
 
             if (args.Length > 0)
@@ -64,7 +55,6 @@ namespace console
             else
             {
                 contractName = "SkrillaToken";
-                //contractName = "PuntaaToken";
             }
 
             Console.WriteLine();
