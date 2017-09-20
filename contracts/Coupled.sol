@@ -102,7 +102,7 @@ contract JincorToken {
     }
 
     function softCapReached() constant returns (bool) {
-        return this.balance > SOFT_CAP;
+        return this.balance > SOFT_CAP * 10 ** decimals;
     }
 
     function() payable {
