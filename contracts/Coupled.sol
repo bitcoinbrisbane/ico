@@ -98,7 +98,7 @@ contract JincorToken {
 
     function getCurrentPrice() constant returns (uint price) {
         //Token price, ETH: 0,002
-        price = TOKENS_PER_ETH * 10 ** decimals;
+        price = TOKENS_PER_ETH;
     }
 
     function softCapReached() constant returns (bool) {
@@ -116,9 +116,10 @@ contract JincorToken {
         uint amountInWei = msg.value;
 
         uint price = getCurrentPrice();
-        uint tokenAmount = price * amountInWei / 1 ether;
+        uint tokenAmount = price * amountInWei * 10 ** decimals / 1 ether;
         
-        transfer(msg.sender, tokenAmount);        
+        balances[owner] = balances[owner].sub(tokenAmount);
+        balances[msg.sender] = balances[msg.sender].add(tokenAmount);        
 
         //Raise event
         TokenPurchase(msg.sender, amountInWei, 0);
