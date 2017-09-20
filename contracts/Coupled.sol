@@ -41,8 +41,8 @@ contract ERC20 {
 contract JincorToken {
     using SafeMath for uint256;
 
-    uint256 private constant TOTAL_SUPPLY = 2000000 * 1 ether;
-    uint256 private constant SOFT_CAP = 500 * 1 ether;
+    uint256 private constant TOTAL_SUPPLY = 2000000;
+    uint256 private constant SOFT_CAP = 500;
     uint private constant TOKENS_PER_ETH = 500;
 
     uint256 private saleStart;
@@ -67,15 +67,15 @@ contract JincorToken {
             saleEnd = _saleStart + 17 days;
         }
 
-        balances[owner] = 2000000 * 1 ether;
+        balances[owner] = 2000000 * 10 ** decimals;
     }
 
     function transfer(address _to, uint256 _value) returns (bool) {
         require(_to != address(0));
 
         // SafeMath.sub will throw if there is not enough balance.
-        balances[msg.sender] -= _value; // balances[msg.sender].sub(_value);
-        balances[_to] += _value; //balances[_to].add(_value);
+        balances[msg.sender] = balances[msg.sender].sub(_value);
+        balances[_to] = balances[_to].add(_value);
         Transfer(msg.sender, _to, _value);
         return true;
     }
@@ -84,25 +84,25 @@ contract JincorToken {
         return balances[_owner];
     }
 
-    function getSaleStart() constant returns (uint256 total) {
+    function getSaleStart() constant returns (uint256) {
         return saleStart;
     }
 
-    function getSaleEnd() constant returns (uint256 total) {
+    function getSaleEnd() constant returns (uint256) {
         return saleEnd;
     }
 
     function totalSupply() constant returns (uint totalSupply) {
-        return TOTAL_SUPPLY;
+        totalSupply = TOTAL_SUPPLY;
     }
 
     function getCurrentPrice() constant returns (uint price) {
         //Token price, ETH: 0,002
-        return TOKENS_PER_ETH * 1 ether;
+        price = TOKENS_PER_ETH * 10 ** decimals;
     }
 
     function softCapReached() constant returns (bool) {
-        this.balance > SOFT_CAP;
+        return this.balance > SOFT_CAP;
     }
 
     function() payable {
@@ -130,7 +130,7 @@ contract JincorToken {
             uint tokenAmount = balances[msg.sender];
             balances[msg.sender] = 0;
             
-            uint ethToSend = tokenAmount / TOKENS_PER_ETH * 1 ether;
+            uint ethToSend = tokenAmount / TOKENS_PER_ETH;
             msg.sender.transfer(ethToSend);
             Refund();
         }
