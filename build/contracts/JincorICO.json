@@ -1,0 +1,149 @@
+{
+  "contract_name": "JincorICO",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "name": "totalSupply",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "softCapReached",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "inSalePeriod",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getSaleEnd",
+      "outputs": [
+        {
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "refund",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getSaleStart",
+      "outputs": [
+        {
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "buyTokens",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getCurrentPrice",
+      "outputs": [
+        {
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_saleStart",
+          "type": "uint256"
+        },
+        {
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokenPurchase",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "Refund",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516040806104aa83398101604052808051919060200180519150505b60018054600160a060020a03191633600160a060020a0316179055811515610064576359e2a5006002556359f7bd00600355610073565b60028290556216698082016003555b60008054600160a060020a031916600160a060020a0383161790555b50505b610409806100a16000396000f3006060604052361561008b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166318160ddd811461009c5780632b9edee9146100c157806332c862ed146100e85780634cc22f9d1461010f578063590e1ae314610134578063969235a414610149578063d0febe4c1461016e578063eb91d37e14610178575b61009a5b61009761019d565b5b565b005b34156100a757600080fd5b6100af6102f6565b60405190815260200160405180910390f35b34156100cc57600080fd5b6100d4610306565b604051901515815260200160405180910390f35b34156100f357600080fd5b6100d461030c565b604051901515815260200160405180910390f35b341561011a57600080fd5b6100af610326565b60405190815260200160405180910390f35b341561013f57600080fd5b61009a61032d565b005b341561015457600080fd5b6100af6103c8565b60405190815260200160405180910390f35b61009a61019d565b005b341561018357600080fd5b6100af6103cf565b60405190815260200160405180910390f35b60008060006101aa61030c565b15156101b557600080fd5b3492506101c06103cf565b9150670de0b6b3a76400008383025b0490506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb33836000604051602001526040517c010000000000000000000000000000000000000000000000000000000063ffffffff851602815273ffffffffffffffffffffffffffffffffffffffff90921660048301526024820152604401602060405180830381600087803b151561028357600080fd5b6102c65a03f1151561029457600080fd5b5050506040518051505073ffffffffffffffffffffffffffffffffffffffff33167fcd60aa75dea3072fbc07ae6d7d856b5dc5f4eee88854f5b4abf7b680ef8bc50f84600060405191825260208201526040908101905180910390a25b505050565b6a01a784379d99db420000005b90565b60005b90565b600060025442118015610320575060035442105b90505b90565b6003545b90565b600080610338610306565b1515600114801561034a575060035442115b156103c35750506000805473ffffffffffffffffffffffffffffffffffffffff90811631919033166108fc82604051600060405180830381858888f19350505050151561039657600080fd5b7f5d26862916391bf49478b2f5103b0720a842b45ef145a268f2cd1fb2aed5517860405160405180910390a15b5b5050565b6002545b90565b681b1ae4d6e2ef5000005b905600a165627a7a723058202119fb3812558c29e539f2c6d4f4ce1c427b396691698a476becd06df90c43750029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1505974716344
+}

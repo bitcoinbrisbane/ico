@@ -10,15 +10,27 @@ contract JincorToken is ERC20 {
     string public symbol = "SIO";
     uint256 public decimals = 18;
 
+    uint256 private saleStart;
+    uint256 private saleEnd;
+
     uint256 private constant TOTAL_SUPPLY = 2000000 * 1 ether;
 
     mapping(address => uint256) public balances;
 
     address owner;
 
-    function JincorToken() {
+    function JincorToken (uint256 _saleStart) {
         owner = msg.sender;
-        balances[owner] = 2000000 * 1 ether;
+
+        if (_saleStart == 0) {
+            saleStart = 1508025600; //Beginning: 10.15.2017
+            saleEnd = 1509408000; //End: 10.31.2017
+        } else {
+            saleStart = _saleStart;
+            saleEnd = _saleStart + 17 days;
+        }
+
+        balances[owner] = 2000000 * 10 ** decimals;
     }
 
     function transfer(address _to, uint256 _value) returns (bool) {
@@ -32,7 +44,7 @@ contract JincorToken is ERC20 {
     }
 
     function balanceOf(address _owner) constant returns (uint256 balance) {
-        return balances[_owner];
+        balance = balances[_owner];
     }
 
     event Transfer(address indexed _from, address indexed _to, uint _value);

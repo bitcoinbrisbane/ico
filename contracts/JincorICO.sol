@@ -36,7 +36,7 @@ contract JincorICO {
     }
 
     function inSalePeriod() constant returns (bool) {
-        return now > saleStart && now < saleEnd
+        return now > saleStart && now < saleEnd;
     }
 
     function JincorICO (uint256 _saleStart, address tokenAddress) {
