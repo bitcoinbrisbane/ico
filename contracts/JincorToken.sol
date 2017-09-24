@@ -15,6 +15,7 @@ contract JincorToken {
     uint256 private constant SOFT_CAP = 500 * 1 ether;
 
 	mapping (address => uint) balances;
+    mapping(address => mapping (address => uint256)) allowed;
 
 	address private owner;
 
@@ -43,6 +44,10 @@ contract JincorToken {
         return now > saleStart && now < saleEnd;
     }
 
+    function balanceOf(address _owner) constant returns (uint256 balance) {
+        balance = balances[_owner];
+    }
+
 	function JincorToken(uint _saleStart) {
         owner = msg.sender;
         if (_saleStart == 0) {
@@ -66,8 +71,28 @@ contract JincorToken {
         return true;
     }
 
-    function balanceOf(address _owner) constant returns (uint256 balance) {
-        balance = balances[_owner];
+    function transferFrom(address _from, address _to, uint256 _amount) returns (bool success) {
+        require(now > saleEnd + 14 days);
+
+        if (balances[_from] >= _amount && allowed[_from][msg.sender] >= _amount && _amount > 0 && balances[_to] + _amount > balances[_to]) {
+
+            balances[_from] = balances[_from].sub(_amount);
+            allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_amount);
+            balances[_to] = balances[_to].add(_amount);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function approve(address _spender, uint _amount) returns (bool success) {
+        allowed[msg.sender][_spender] = _amount;
+        return true;
+    }
+
+    function allowance(address _owner, address _spender) constant returns (uint remaining) {
+        return allowed[_owner][_spender];
     }
 
     function() payable {
@@ -90,13 +115,21 @@ contract JincorToken {
     }
 
     function refund() {
-        if (softCapReached() == true && now > saleEnd) {
+        if (softCapReached() == false && now > saleEnd) {
 
             uint tokenAmount = balanceOf(msg.sender);
             uint amount = tokenAmount.div(1 ether);
             
             msg.sender.transfer(amount);
             Refund();
+        }
+    }
+
+    function withdraw() {
+        require(msg.sender == owner);
+
+        if (softCapReached() == true && now > saleEnd) {
+            msg.sender.transfer(this.balance);
         }
     }
 
