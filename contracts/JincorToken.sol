@@ -43,9 +43,8 @@ contract JincorToken {
         return now > saleStart && now < saleEnd;
     }
 
-	function JincorToken() {
+	function JincorToken(uint _saleStart) {
         owner = msg.sender;
-		uint _saleStart = 0;
         if (_saleStart == 0) {
             saleStart = 1508025600; //Beginning: 10.15.2017
             saleEnd = 1509408000; //End: 10.31.2017
