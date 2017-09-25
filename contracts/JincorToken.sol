@@ -100,7 +100,7 @@ contract JincorToken {
     }
 
     function buyTokens() payable {
-
+        require(msg.value > 0);
         require(inSalePeriod());
 
         uint amountInWei = msg.value;
@@ -111,7 +111,7 @@ contract JincorToken {
         transfer(msg.sender, tokenAmount);        
 
         //Raise event
-        TokenPurchase(msg.sender, amountInWei, 0);
+        BuyToken(msg.sender, amountInWei, 0);
     }
 
     function refund() {
@@ -135,6 +135,6 @@ contract JincorToken {
 
 	event Transfer(address indexed _from, address indexed _to, uint _value);
     event Approval(address indexed _owner, address indexed _spender, uint _value);
-    event TokenPurchase(address indexed _purchaser, uint256 _value, uint256 _amount);
+    event BuyToken(address indexed _purchaser, uint256 _value, uint256 _amount);
     event Refund();
 }
